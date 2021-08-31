@@ -1,5 +1,6 @@
 function startGame()  {
 
+
         const scoreDisplay = document.getElementById('score')
         const width = 28
         let score = 0
@@ -48,6 +49,13 @@ function startGame()  {
         var nom4 = new Audio('nom4.mp3')
         var nom5 = new Audio('nom5.mp3')
         var pellet = new Audio('pellet.mp3')
+        var music = new Audio('music.mp3')
+        var lose = new Audio('gameover.mp3')
+        var win = new Audio('win.mp3')
+
+        music.volume = 0.05
+        music.loop = true
+        music.play()
 
         //function to play nom sound
         var nomnom = new Audio(),
@@ -115,7 +123,7 @@ function startGame()  {
         function movePacman(e) {
         if (keyTimer == 0) {
             keyTimer = 1
-            setTimeout(incrementTimer, 400);
+            setTimeout(incrementTimer, 300);
             console.log(keyTimer)
             console.log(getCoordinates(pacmanCurrentIndex))
             squares[pacmanCurrentIndex].classList.remove('pac-man')
@@ -263,6 +271,8 @@ function startGame()  {
             !squares[pacmanCurrentIndex].classList.contains('scared-ghost')) {
             ghosts.forEach(ghost => clearInterval(ghost.timerId))
             document.removeEventListener('keydown', movePacman)
+            music.pause()
+            lose.play()
             setTimeout(function(){ alert("Game Over"); }, 500)
         }
         }
@@ -272,6 +282,8 @@ function startGame()  {
         if (score === 274) {
             ghosts.forEach(ghost => clearInterval(ghost.timerId))
             document.removeEventListener('keydown', movePacman)
+            music.pause()
+            win.play()
             setTimeout(function(){ alert("You have WON!"); }, 500)
         }
         }
