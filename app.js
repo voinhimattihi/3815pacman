@@ -40,6 +40,32 @@ function startGame()  {
         // 3 - power-pellet
         // 4 - empty
 
+        //add sounds
+
+        var nom1 = new Audio('nom1.mp3')
+        var nom2 = new Audio('nom2.mp3')
+        var nom3 = new Audio('nom3.mp3')
+        var nom4 = new Audio('nom4.mp3')
+        var nom5 = new Audio('nom5.mp3')
+        var pellet = new Audio('pellet.mp3')
+
+        //function to play nom sound
+        var nomnom = new Audio(),
+        i = 0;
+        var nomlist = new Array(nom1,nom2,nom3,nom4,nom5)
+
+        function nomSound() {
+        if (i == 5){
+            i = 0;
+            nomlist[i].volume = 0.1
+            nomlist[i].play()
+            i++
+        }
+            nomlist[i].volume = 0.1
+            nomlist[i].play()
+            i++
+        }
+
         //new var to check if key hasn't been pressed in last few milliseconds
 
         let keyTimer = 0
@@ -146,6 +172,7 @@ function startGame()  {
         function pacDotEaten() {
         if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
             score++
+            nomSound()
             scoreDisplay.innerHTML = score
             squares[pacmanCurrentIndex].classList.remove('pac-dot')
         }
@@ -154,6 +181,8 @@ function startGame()  {
         //what happens when you eat a power-pellet
         function powerPelletEaten() {
         if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+            pellet.volume = 0.4
+            pellet.play()
             score +=10
             ghosts.forEach(ghost => ghost.isScared = true)
             setTimeout(unScareGhosts, 10000)
