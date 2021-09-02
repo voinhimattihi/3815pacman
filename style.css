@@ -1,18 +1,29 @@
-  
+
+.mobileShow { 
+    display: none;
+}
+   /* Smartphone Portrait and Landscape */
+
+@media only screen and (max-width: 600px) {
+    .mobileShow {
+        display: inline;
+    }
+  }
+
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 560px;
-    height: 540px;
+    width: 420px;
+    height: 405px;
     border: solid black;
 }
   
 .grid div {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 
-.pac-dot {
+.dot {
     background-color: green;   
     border: 5px solid white;
     box-sizing: border-box;
@@ -29,21 +40,25 @@
 
 .blinky {
     background-color: red;
+    border: none;
 }
 
 .pinky {
     background-color: pink;
+    border: none;
 }
 
 .inky {
     background-color: cyan;
+    border: none;
 }
 
 .clyde {
-    background-color: orange;     
+    background-color: orange;
+    border: none;
 }
 
-.pac-man {
+.pac-man{
     background-color: yellow;
     border-radius: 10px;
 }
